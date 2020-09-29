@@ -7,14 +7,14 @@ eureka:
   instance:
     prefer-ip-address: true
     hostname: ${spring.cloud.client.ip-address}
-    ip-address: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
 spring:
   application:
     name: config-server
   cloud:
     config:
+      discovery:
+        enabled: true
       server:
         git:
           uri: https://github.com/longziyang/config-center.git
-      discovery:
-        enabled: true
