@@ -1,6 +1,6 @@
 package com.project.service;
 
-import com.project.dao.OrderMapper;
+import com.project.mapper.OrderMapper;
 import com.project.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

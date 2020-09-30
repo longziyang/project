@@ -1,6 +1,6 @@
 package com.project.service;
 
-import com.project.dao.StockMapper;
+import com.project.mapper.StockMapper;
 import com.project.entity.Stock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
