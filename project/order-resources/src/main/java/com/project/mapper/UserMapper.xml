@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.mapper.UserMapper">
+
+    <resultMap id="SysUserBuild" type="com.project.entity.SysUser">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="state" property="state"/>
+        <result column="email" property="email"/>
+        <collection property="authorities" ofType="com.project.entity.Role">
+            <result column="rid" property="id"/>
+            <result column="rname" property="name"/>
+        </collection>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.project.entity.SysUser">INSERT INTO sys_user
+		(username, password, created_time, update_time, state, email)
+		VALUES(#{user.username}, #{user.password},
+		#{user.createTime},
+		#{user.updateTime}, 1, #{user.email})</insert>
+
+     <select id="selectByUsername" parameterType="java.lang.String" resultMap="SysUserBuild">
+    select su.id,su.username,su.`password`,su.email,su.state,ro.rid,ro.rname from sys_user su LEFT JOIN(
+    select ur.user_id userId ,role.id rid ,role.name rname from role left join user_role ur on ur.role_id = role.id) ro
+    on su.id = ro.userId where username =#{username}
+	</select>
+</mapper>

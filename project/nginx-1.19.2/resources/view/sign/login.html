@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+<meta charset="UTF-8" />
+<!--  <meta name="_csrf" th:content="${_csrf.token}"/>
+      <meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
+<title>认证用户</title>
+<link rel="icon" href="/ico/ppxface.ico">
+<link rel="stylesheet" type="text/css"
+	href="/css/bootstrap/bootstrap.4.2.1.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+	integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+	crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="/css/layer/layer2.3.css" />
+</head>
+<body>
+	<div class="container ">
+		<div class="jumbotron mt-5">
+
+			<form class="javascript: text-center text-red" name="myForm"
+				method="post" action="/sign/loginUser">
+				<input type="hidden" name="_csrf" th:value="${_csrf.token}">
+				<input type="hidden" name="_csrf_header"
+					th:value="${_csrf.headerName}">
+
+				<div class="btn mt-3  btn-outline-warning  text-danger">
+					<i class="fa fa-user-circle"></i> <input name="username"
+						class="ml-2" type="text" placeholder="_请输入您的账户名" />
+				</div>
+
+				<div>
+					<div class="mt-2 btn btn-outline-warning text-danger">
+						<i id="eye" class="fa fa-eye-slash" aria-hidden="true"></i> <input
+							class="ml-2" name="password" type="password"
+							placeholder="_请输入您的密码" id="inputV" title="密码不得少于6位数" />
+					</div>
+				</div>
+
+				<div>
+					<div class="mt-2 btn btn-outline-warning text-danger">
+						<input class="ml-2" name="remember-me" type="checkbox"
+							th:value="1" />记住我
+					</div>
+				</div>
+				<div>
+					<button
+						class=" mt-2 btn btn-outline-warning btn-bg-danger text-primary"
+						type="submit">登录</button>
+					<button
+						class=" mt-2 btn btn-outline-warning btn-bg-danger text-primary"
+						type="button" onclick="regist()">注册</button>
+				</div>
+
+
+				<div class="mt-3">
+					<a href="forget">忘记账号或密码?</a>
+				</div>
+
+			</form>
+
+
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="/js/jquery/jquery.2.2.4.js"></script>
+	<script type="text/javascript"
+		src="/js/jquery/jquery.validate.1.19.1.js"></script>
+	<script type="text/javascript" src="/js/vue/vue.2.6.10.js"></script>
+	<script type="text/javascript" src="/js/layer/layer.js"></script>
+	<script type="text/javascript" src="/js/login/login.js"></script>
+
+</body>
+</html>

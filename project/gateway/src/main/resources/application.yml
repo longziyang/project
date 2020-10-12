@@ -5,40 +5,71 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            #allowedOrigins: /** ,*表示全部
+            allowedOrigins:
+            # 允许127.0.0.1:7005端口的get请求
+            - /**
+            #- "http://127.0.0.1:7005"
+            allowedMethods:
+              - GET,POST
       discovery:
         locator:
           enabled: true #开启自动路由,以服务id建立路由，服务id默认大写
       routes:
         - id: order-resources-route
-          uri: bl://order-resources
+          uri: lb://order-resources
           predicates:
             - Path=/api-order/**
           filters:
-              # 添加请求路径的前缀
-              #- PrefixPath=/user
-              # 1表示过滤1个路径，2表示两个路径，以此类推
+            # 添加请求路径的前缀
+            #- PrefixPath=/user
+            # 1表示过滤1个路径，2表示两个路径，以此类推
             - StripPrefix=1
         - id: stock-resources-route
-          uri: bl://stock-resources
+          uri: lb://stock-resources
           predicates:
             - Path=/api-stock/**
           filters:
             - StripPrefix=1
-        - id: login-resources-route
-          uri: bl://login-resources
+        - id: security-resources-route
+          uri: lb://security-resources
           predicates:
             - Path=/api-login/**
           filters:
             - StripPrefix=1
-            - TokenVerify=token
+      default-filters:
+        - AddResponseHeader=X-Response-Default-api, yhg
+#  instance:
+#    hostname: ${spring.cloud.client.ip-address}
+#    prefer-ip-address: true
+#    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+#    lease-renewal-interval-in-seconds: 5
+#    lease-expiration-duration-in-seconds: 15
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+ribbon:
+  ConnectTimeout: 1000
+  ReadTimeout: 2000
+  MaxAutoRetries: 1 # 当前服务器的重试次数
+  MaxAutoRetriesNextServer: 1 # 重试多少次服务
+  OkToRetryOnAllOperations: true # 是否对所有的请求方式都重试
+logging:
+  level:
+    com.project: debug
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:7002/eureka
+      defaultZone: http://127.0.0.1:7001/eureka
   instance:
-    hostname: ${spring.cloud.client.ip-address}
     prefer-ip-address: true
+    hostname: ${spring.cloud.client.ip-address}
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-token:
-  invalid:
-    ignored: /sign/*

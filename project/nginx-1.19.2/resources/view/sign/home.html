@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title>商城</title>
+    <link rel="icon" href="/ico/ppxface.ico">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.4.2.1.css"/>
+    <link
+            href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet">
+    <script
+            src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<img class="a" src="img/app1.jpg"
+     style="position: fixed; left: 150px; top: 550px"/>
+
+<input id="sign" type="hidden" th:value="${sign}">
+<div class=" text-danger text-right mt-3 mr-5">
+    <input style="width: 200px;" type="text" id="seek"
+           placeholder=" 搜索  商品 品牌 店铺" class="">
+    <button class="btn text-center text-danger  mr-5" onclick="seek();">
+        搜索
+    </button>
+</div>
+
+<div class="mt-2 ml-5 " style="font-size: 30px; color: red">
+    <a href="javascript:void(0);" onclick="app()" class="ml-5"><img src="img/pdd.png"></a> 欢迎登录拼多多购物商城
+    <a href="/" style="color: #FF4500; font-size: 25px;" class=" ml-5" id="s-zero"onclick=ck(this);>首页 </a>
+    <a href="order/management/list" style="color: #FF4500; font-size: 25px;" class=" ml-3" id="s-one"onclick=ck(this);>| 商品管理 </a>
+    <a href="product/management/list" style="color: #FF4500; font-size: 25px;" class=" ml-3" id="s-two"  onclick=ck(this);>| 订单管理 </a>
+    <a href="user/management/list" style="color: #FF4500; font-size: 25px;" class=" ml-3" id="s-"onclick=ck(this);>| 用户管理 </a>
+    <a href="product/management/list" style="color: #FF4500; font-size: 25px;" class=" ml-3" id="s-three"onclick=ck(this);>| 角色管理 </a>
+    <a href="order/management/list" style="color: #FF4500; font-size: 25px;" class=" ml-3" id="s-four" onclick=ck(this);>| 权限管理 </a>
+    <b class="ml-5"></b>
+    <div class="btn-group ml-5">
+        <button type="button" class="btn btn-outline-danger ml-5 "
+                data-toggle="dropdown">
+            <i class="fa fa-address-card text-info" aria-hidden="true"></i> 个人中心
+            <span class="caret "></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href=""><i class="fa fa-user"></i> 个人信息</a></li>
+            <li><a href=""><i class="fa fa-pinterest-square" aria-hidden="true"> </i> 购物车</a></li>
+            <li><a href=""><i class="fa fa-cny"></i> 优惠券</a></li>
+            <li><a href="/order/customer"><i class="fa fa-file-image-o" aria-hidden="true"></i> 订单管理 </a></li>
+            <li><a href="/product/list"><i class="fa fa-gear"></i> 商品管理 </a></li>
+            <li><a href="javascript:void(0)" onclick="logout();"><i class="fa fa-trash" aria-hidden="true"></i> 注销</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="mt-3 ">
+    <a href="javascript:void(0);" onclick="app()"> <img alt="图片无法加载"
+                                                        src="img/ping.jpg"></a>
+</div>
+
+<div class="container mt-3">
+    <p align="left" style="font-size: 20px;">精彩活动</p>
+    <p style="border: 1px solid;"></p>
+</div>
+
+<div class="mt-3">
+    <div class="text-center">
+        <a class="ml-2"><img
+                src="img/v1.jpg" style="border: 10px solid #F0FFFF;"></a> <a
+            class="ml-2"><img
+            src="img/v2.jpg" style="border: 10px solid #F0FFFF;"></a> <a
+            class="ml-2"><img
+            src="img/v3.jpg" style="border: 10px solid #F0FFFF;"></a>
+    </div>
+    <div class=" mt-3 text-center">
+        <a class="ml-2"><img
+                src="img/v4.jpg" style="border: 10px solid #F0FFFF;"></a> <a
+            class="ml-2"><img
+            src="img/v5.jpg" style="border: 10px solid #F0FFFF;"></a> <a
+            href="javascript:void(0);" class="ml-2" onclick="app()"> <img
+            src="img/v6.png" style="border: 10px solid #F0FFFF;">4
+    </a>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <p align="left" style="font-size: 20px;">精选专题</p>
+    <p style="border: 1px solid;"></p>
+</div>
+<div class="mt-3">
+    <div class="text-center mt-3">
+        <a><img src="img/w1.jpg"
+                style="border: 10px solid #F0FFFF;"></a> <a
+            class="ml-4"><img src="img/w2.jpg"
+                              style="border: 10px solid #F0FFFF;"></a>
+    </div>
+    <div class="text-center mt-3">
+        <a><img src="img/w3.jpg"
+                style="border: 10px solid #F0FFFF;"></a> <a
+            class="ml-4"><img
+            src="img/w4.jpg" style="border: 10px solid #F0FFFF;"></a>
+    </div>
+    <div class="text-center mt-3">
+        <a><img src="img/w5.jpg"
+                style="border: 10px solid #F0FFFF;"></a> <a
+            class="ml-4"><img
+            src="img/w6.jpg" style="border: 10px solid #F0FFFF;"></a>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/js/jquery/jquery.2.2.4.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.validate.1.19.1.js"></script>
+<script type="text/javascript" src="/js/vue/vue.2.6.10.js"></script>
+<script type="text/javascript" src="/js/layer/layer.js"></script>
+<script type="text/javascript" src="/js/bootstrap/bootstrap.js"></script>
+<script type="text/javascript" src="/js/login/home.js"></script>
+</body>
+</html>

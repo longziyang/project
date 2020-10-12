@@ -1,0 +1,76 @@
+server:
+  port: 9999
+  servlet:
+    session:
+      timeout: 3600s
+      cookie:
+        #：如果为true，那么浏览器脚本将无法访问cookie
+        http-only: true
+        #：如果为true，则cookie将仅通过HTTPS连接发送
+        #secure: true
+spring:
+  oauth:
+    code_url: http://localhost:1232/oauth/authorize?response_type=code&client_id=
+    authorization_code_url: http://localhost:1232/oauth/token?grant_type=%s&client_id=%s&client_secret=%s&code=%s
+    client_credentials_url: http://localhost:1232/oauth/token?grant_type=%s&client_id=%s&client_secret=%s
+    refresh_token_url: http://localhost:1232/oauth/refresh_token?grant_type=%s&refresh_token=%s&client_id=%s&client_secret=%s
+    password_url: http://localhost:1232/oauth/token?grant_type=%s&client_id=%s&client_secret=%s&username=%s&password=%s
+    implicit_url: http://localhost:1232/oauth/authorize?response_type=token&client_id=%s&redirect_uri=%s
+    grant_type: authorization_code
+    secret: 123
+    client_id: 123key
+    username: user
+    password: 123456
+    openIdUri: https://graph.qq.com/oauth2.0/me?access_token=;
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+    prefix: classpath:/view/
+    mode: LEGACYHTML5
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/spring?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+  application:
+    name: security-resources
+  mail:
+    host: smtp.qq.com
+    username: 1159265197@qq.com
+    password: vjszhpgkfnxkbage
+    default-encoding: UTF-8
+    smtp:
+      starttls:
+        enable=true: true
+        required=true: true
+        auth=true: true
+
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    timeout: 300
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+  jwt:
+    key:
+      pub: C:\Users\samsung\Desktop\test\project\security-resources\src\main\resources\key\pub_key
+      pri: C:\Users\samsung\Desktop\test\project\security-resources\src\main\resources\key\pri_key
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+logging:
+  level:
+     com.project: debug

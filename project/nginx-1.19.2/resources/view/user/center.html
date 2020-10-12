@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link
+            href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+            rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+    <script
+            src="https://cdn.bootcss.com/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <link
+            href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet">
+
+</head>
+<body>
+<div th:each="u: ${session.user}">
+    <img th:src="${u.spare1}"
+         style="position: fixed; left: 150px; top: 200px; width: '5%';">
+</div>
+
+<h1 class="text-center text-danger mt-5">个人中心</h1>
+<div class="container  container-fluid text-white">
+    <div class="jumbotron  mt-3 mr-8 text-center text-white">
+
+        <button class="text-letf btn text-danger" onclick="getMessage();">查询积分</button>
+
+
+        <form class="javascript: text-center text-red" name="my"
+              action="updateUser" onsubmit="return va()" method="post"></form>
+
+        <div class=" mt-3  btn btn-outline-warning ">
+            账户修改 6-10位数字或字母<input id="account"
+                                  style="width: 200px; height: 30px;" class="ml-3" type="text"
+                                  placeholder="_请输入您的账户名"/> <i class="btn fa fa-refresh ml-2"
+                                                               aria-hidden="true" onclick="goinAccount();"></i>
+        </div>
+        <div></div>
+        <div class="mt-3  btn btn-outline-warning">
+            昵称修改 6-10位数字或字母<input id="realname"
+                                  style="width: 200px; height: 30px;" class="ml-3 " type="text"
+                                  placeholder="_请输入您的昵称 "/><i class="btn fa fa-refresh ml-2"
+                                                              aria-hidden="true" onclick="goinRealName();"></i>
+        </div>
+
+        <div></div>
+        <div class="mt-3  btn btn-outline-warning">
+            密码修改 6-10位数字或字母<input id="password"
+                                  style="width: 200px; height: 30px;" class="ml-3 " type="text"
+                                  placeholder="_请输入您的密码 "/><i class="btn fa fa-refresh ml-2"
+                                                              aria-hidden="true" onclick="goinPassword();"></i>
+        </div>
+
+        <div></div>
+        <div class="mt-3  btn btn-outline-warning">
+            地址修改 仅支持中国大陆 <input id="dizhi" style="width: 200px; height: 30px;"
+                                class="ml-4 " type="text" placeholder="_请输入您的地址 "/><i
+                class="btn fa fa-refresh ml-2" aria-hidden="true"
+                onclick="goinDizhi();" data-toggle="popover"
+                data-content="添加后该地址为默认地址"></i>
+        </div>
+
+        <div></div>
+        <div class="mt-3 btn btn-outline-warning">
+            发送验证码 仅支持QQ邮箱<input id="mail" style="width: 200px; height: 30px;"
+                                class="ml-4 " type="text" placeholder="_请输入您的QQ邮箱"/><i
+                class="btn fa fa-refresh ml-2" aria-hidden="true"
+                onclick="emailCode();"></i>
+        </div>
+
+        <div></div>
+        <div class="mt-3 btn btn-outline-warning">
+            请输入您获取的验证码<input id="code" style="width: 200px; height: 30px;"
+                             class="ml-5" type="text" placeholder="_请输入您的验证码"/><i
+                class="btn fa fa-refresh ml-2" aria-hidden="true"
+                onclick="goinEmail();"></i>
+        </div>
+
+        <div></div>
+        <div class="mt-3 btn btn-outline-warning">
+            手机修改 <a href="javascript:" class=" ml-3 btn-outline-primary"
+                    onclick="mobilCode();">发送手机验证码</a><input id="mobil"
+                                                             style="width: 200px; height: 30px;" class="ml-3 "
+                                                             type="text"
+                                                             placeholder="_仅支持中国大陆手机"/><i class="btn fa fa-refresh ml-2"
+                                                                                          aria-hidden="true"
+                                                                                          onclick="goinMobil();"></i>
+        </div>
+        <!--
+        <div>
+            <button data-toggle="popover" data-content="添加后该地址为默认地址">
+                提交</button>
+        </div> -->
+        <div class="mt-3"></div>
+
+        <div class="mt-4 text-success">请妥善保管您的个人信息 不要将个人信息随意告知他人</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    /* $(function() {
+        $("[data-toggle='popover']").popover();
+    }); */
+    var emailcode = "0";
+
+    function goinAccount() {
+        var a = $("#account").val();
+        if (a.length_$tag__________10) {
+            layer.msg("信息有误💩");
+            return false;
+        }
+        $.ajax({
+            url: "updateAccount",
+            data: {
+                account: a,
+            },
+            success: function (data) {
+                layer.msg("修改成功🙂");
+            }
+        })
+    }
+
+    function goinRealName() {
+        var c = $("#realname").val();
+        if (c.length_$tag__________10) {
+            layer.msg("信息有误🐷");
+            return false;
+        }
+        $.ajax({
+            url: "updateRealName",
+            data: {
+                realname: c,
+            },
+            success: function (data) {
+                layer.msg("修改成功🙂");
+            }
+        })
+    }
+
+    function goinPassword() {
+        var b = $("#password").val();
+        if (b.length_$tag__________10) {
+            layer.msg("信息有误❌");
+
+            return false;
+        }
+        $.ajax({
+            url: "updatePassword",
+            data: {
+                password: b,
+            },
+            success: function (data) {
+                layer.alert("修改成功🙂");
+            }
+        })
+    }
+
+    function goinDizhi() {
+
+        var dizhi = $("#dizhi").val();
+        if (dizhi.length < 10) {
+            layer.msg("至少输入10个字符🙂");
+            return false;
+        }
+        $.ajax({
+            url: "updateDiZhi",
+            data: {
+                dizhi: dizhi,
+            },
+            success: function (data) {
+                layer.alert("修改成功🙂");
+            }
+
+        })
+
+    }
+
+    function goinEmail() {
+        var d = $("#mail").val();
+        var code = $("#code").val();
+        if (d.indexOf("@") < 1 || d.lastIndexOf(".") < d.indexOf("@") + 2
+            || d.lastIndexOf(".") + 2 >= d.length) {
+            layer.msg("不是一个有效的 e-mail 地址😥");
+            return false;
+        }
+        if (emailcode != code) {
+            layer.msg("验证码有误😥");
+            return false;
+        }
+        $.ajax({
+            url: "updateEmail",
+            data: {
+                email: d,
+            },
+            success: function (data) {
+                layer.msg("修改成功🙂");
+            }
+        })
+    }
+
+    function emailCode() {
+        var d = $("#mail").val();
+
+        if (d.indexOf("@") < 1 || d.lastIndexOf(".") < d.indexOf("@") + 2
+            || d.lastIndexOf(".") + 2 >= d.length) {
+            layer.msg("不是一个有效的 e-mail 地址😥");
+            return false;
+        }
+        $.ajax({
+            url: "getEmailCode",
+            data: {
+                email: d,
+            },
+            success: function (data) {
+                emailcode = data;
+                layer.alert("发送成功🙂");
+            }
+        })
+
+    }
+
+    function goinMobil() {
+        layer.msg("抱歉短信功能暂未开通😥")
+    }
+
+    function mobilCode() {
+
+        layer.msg("抱歉短信功能暂未开通😥")
+    }
+
+    function getMessage() {
+        $.ajax({
+            url: "getuser_jifen",
+            data: {},
+            success: function (data) {
+                layer.msg(data);
+            }
+        })
+    }
+</script>
+</body>
+</html>
