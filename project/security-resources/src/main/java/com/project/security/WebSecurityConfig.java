@@ -1,18 +1,22 @@
 package com.project.security;
 
 import com.project.security.email.EmailLoginSecurityConfig;
+import com.project.security.handler.AccessDeniedHandlerImp;
 import com.project.security.password.PasswordLoginSecurityConfig;
 import com.project.security.password.PasswordLoginUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import javax.sql.DataSource;
@@ -31,6 +35,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private EmailLoginSecurityConfig emailLoginSecurityConfig;
     @Autowired
     private PasswordLoginSecurityConfig passwordLoginSecurityConfig;
+
+    @Autowired
+    private AccessDeniedHandlerImp deniedHandler;// 自定义错误(403)返回数据
+
+    @Autowired
+    private MyAccessDecisionManager myAccessDecisionManager;// 权限决策器
+    @Autowired
+    private MyInvocationSecurityMetadataSource myFilterSecurityInterceptor;// 权限过滤器（当前url所需要的访问权限）
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
@@ -77,6 +89,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .apply(passwordLoginSecurityConfig).and()
                 .apply(emailLoginSecurityConfig).and()
                 .authorizeRequests()
+//        .withObjectPostProcessor(new ObjectPostProcessor<FilterSecurityInterceptor>() {
+//            @Override
+//            public <O extends FilterSecurityInterceptor> O postProcess(O o) {
+//                o.setSecurityMetadataSource(myFilterSecurityInterceptor);
+//                o.setAccessDecisionManager(myAccessDecisionManager);
+//                return o;
+//            }
+//        })
                     .antMatchers("/sign/*", "/ico/**", "/css/**", "/js/**", "/img/**").permitAll()
                     .antMatchers().hasAnyRole("USER")
                     .anyRequest().authenticated()
@@ -94,9 +114,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .rememberMe()
                     .tokenRepository(persistentTokenRepository())
-                    .tokenValiditySeconds(66);
+                    .tokenValiditySeconds(66)
+                .and()
+                .exceptionHandling().accessDeniedHandler(deniedHandler);
+        ;
 
 
     }
+
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/index.html", "/static/**", "/login_p", "/favicon.ico")
+//                // 给 swagger 放行；不需要权限能访问的资源
+//                .antMatchers("/swagger-ui.html", "/swagger-resources/**", "/images/**", "/webjars/**", "/v2/api-docs",
+//                        "/configuration/ui", "/configuration/security");
+//    }
+
 
 }
