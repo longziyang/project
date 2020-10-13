@@ -31,10 +31,6 @@ public class ResourcesDataConfig {
 	private String grantType;
 	@Value("${spring.oauth.secret}")
 	private String secret;
-	@Value("${spring.oauth.username}")
-	private String username;
-	@Value("${spring.oauth.password}")
-	private String password;
 
 	public String getClientId() {
 
@@ -75,12 +71,5 @@ public class ResourcesDataConfig {
 		return secret;
 	}
 
-	public String getUsername() {
-		return username == null ? "" : username;
-	}
-
-	public String getPassword() {
-		return password == null ? "" : password;
-	}
 
 }

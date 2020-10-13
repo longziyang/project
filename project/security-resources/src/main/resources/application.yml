@@ -10,17 +10,15 @@ server:
         #secure: true
 spring:
   oauth:
-    code_url: http://localhost:1232/oauth/authorize?response_type=code&client_id=
-    authorization_code_url: http://localhost:1232/oauth/token?grant_type=%s&client_id=%s&client_secret=%s&code=%s
-    client_credentials_url: http://localhost:1232/oauth/token?grant_type=%s&client_id=%s&client_secret=%s
-    refresh_token_url: http://localhost:1232/oauth/refresh_token?grant_type=%s&refresh_token=%s&client_id=%s&client_secret=%s
-    password_url: http://localhost:1232/oauth/token?grant_type=%s&client_id=%s&client_secret=%s&username=%s&password=%s
-    implicit_url: http://localhost:1232/oauth/authorize?response_type=token&client_id=%s&redirect_uri=%s
+    code_url: http://localhost:${server.port}/oauth/authorize?response_type=code&client_id=
+    authorization_code_url: http://localhost:${server.port}/oauth/token?grant_type=%s&client_id=%s&client_secret=%s&code=%s
+    client_credentials_url: http://localhost:${server.port}/oauth/token?grant_type=%s&client_id=%s&client_secret=%s
+    refresh_token_url: http://localhost:${server.port}/oauth/refresh_token?grant_type=%s&refresh_token=%s&client_id=%s&client_secret=%s
+    password_url: http://localhost:${server.port}/oauth/token?grant_type=%s&client_id=%s&client_secret=%s&username=%s&password=%s
+    implicit_url: http://localhost:${server.port}/oauth/authorize?response_type=token&client_id=%s&redirect_uri=%s
     grant_type: authorization_code
     secret: 123
     client_id: 123key
-    username: user
-    password: 123456
     openIdUri: https://graph.qq.com/oauth2.0/me?access_token=;
   thymeleaf:
     encoding: utf-8
