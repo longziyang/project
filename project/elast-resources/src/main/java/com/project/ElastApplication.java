@@ -1,10 +1,10 @@
 package com.project;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableEurekaClient
 @MapperScan(basePackages = "com.my")

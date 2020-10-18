@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mystery.dao.TaskMapper">
+	<resultMap id="BaseResultMap" type="com.mystery.entity.Task">
+		<!-- WARNING - @mbg.generated -->
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="state" jdbcType="INTEGER" property="state" />
+	</resultMap>
+
+	<select id="selectByState" resultMap="BaseResultMap">
+		select * from task
+		where
+		state=0;
+	</select>
+
+	<update id="updateByState" parameterType="com.mystery.entity.Task">
+		update task set state=1 where id=#{idd};
+	</update>
+</mapper>

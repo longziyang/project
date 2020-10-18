@@ -1,8 +1,10 @@
 package com.project.entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.*;
+
 
 public class User implements Serializable {
     @Id

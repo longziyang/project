@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link
+	href="https://cdn.bootcss.com/twitter-bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/twitter-bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.bootcss.com/layer/2.3/layer.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+</head>
+<body>
+
+	<div class="mt-3 text-center">
+		<i id="show"></i>
+
+		<button class="btn btn-outline-warning" onclick="info()">seek</button>
+	</div>
+
+	<script type="text/javascript">
+		function time() {
+			$.post("getTime", {}, function(data) {
+
+				$("#show").html(data);
+				setTimeout(time(), 1000);
+			})
+		}
+
+		//time();
+
+		function longPoll() {
+			$.post("longPoll", {}, function(data) {
+
+				$("#show").append(data + " | ");
+				longPoll();
+			})
+		}
+		//longPoll();
+
+		function info() {
+			$.ajax({
+				type : "get",
+				url : "http://localhost:7008/my/User/sp" + "?id=2&callback=?",
+				dataType : "jsonp",
+				jsonp : "callback",
+				success : function(data) {
+					layer.msg(data);
+				}
+			})
+		}
+	</script>
+
+</body>
+</html>

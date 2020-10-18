@@ -1,5 +1,6 @@
 package com.project.entity;
 
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;

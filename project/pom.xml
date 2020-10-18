@@ -17,6 +17,9 @@
         <module>gateway</module>
         <module>service</module>
         <module>elast-resources</module>
+        <module>sharding-jdbc</module>
+        <module>order-mq</module>
+        <module>delivery-mq</module>
     </modules>
 
     <parent>
@@ -49,6 +52,11 @@
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
             <version>2.1.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.1.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
