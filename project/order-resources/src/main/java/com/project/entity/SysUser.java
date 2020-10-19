@@ -14,6 +14,7 @@ public class SysUser extends BaseEntity implements UserDetails {
     private String username;
     private String password;
     private String email;
+    private Integer integral;
 
     private List<Role> authorities;
 
@@ -58,6 +59,14 @@ public class SysUser extends BaseEntity implements UserDetails {
     public void setPassword(String password) {
 
         this.password = password;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
     }
 
     public String getEmail() {

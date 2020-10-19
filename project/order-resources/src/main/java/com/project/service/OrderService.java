@@ -17,6 +17,7 @@ public class OrderService {
 
 
         Order order = orderMapper.selectByPrimaryKey(id);
+        order.getIntegral();
 
         return order;
     }

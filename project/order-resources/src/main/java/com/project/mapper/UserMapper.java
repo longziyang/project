@@ -3,6 +3,7 @@ package com.project.mapper;
 import com.project.entity.SysUser;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -31,4 +32,10 @@ public interface UserMapper extends Mapper<SysUser> {
 
 
     SysUser selectByUsername(@Param("username") String username);
+
+    @Select("select * from sys_user where id = #{id}")
+    SysUser selectById(@Param("id")Long userId);
+
+    @Update("update sys_user set integral =${integral} where id = #{id}")
+    int updateIntegralById(@Param("integral")Integer integral,@Param("id") Long userId);
 }
