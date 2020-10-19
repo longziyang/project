@@ -13,4 +13,5 @@ public class Order {
     private Long id;
     private String no;
     private int state;
+    private int integral;
 }

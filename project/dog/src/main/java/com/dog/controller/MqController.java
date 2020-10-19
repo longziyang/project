@@ -1,6 +1,7 @@
 package com.dog.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -43,11 +44,16 @@ public class MqController {
 	@ResponseBody
 	public String returnOk(Integer id) {
 
-		Mes mes = mesDao.findOne(id);
+		Optional<Mes> optional = mesDao.findById(id);
+		if (optional.isPresent()){
 
-		mes.setState(1);
-		mesDao.save(mes);
-		return "ok";
+			Mes mes = optional.get();
+			mes.setState(1);
+			mesDao.save(mes);
+			return "ok";
+		}
+
+		return "mes is null";
 	}
 
 	@Scheduled(fixedDelay = 1000)

@@ -1,5 +1,6 @@
 package com.project.service;
 
+import com.project.config.annotation.Transfer;
 import com.project.mapper.OrderMapper;
 import com.project.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +12,12 @@ public class OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
+    @Transfer
     public Order queryById(Long id) {
 
-//        // 模拟接口运行时抛出代码异常
-//        if (id.equals(1L)) {
-//            throw new RuntimeException("111");
-//        }
-        return orderMapper.selectByPrimaryKey(id);
+
+        Order order = orderMapper.selectByPrimaryKey(id);
+
+        return order;
     }
 }

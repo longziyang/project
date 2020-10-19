@@ -2020,3 +2020,32 @@ INFO   | jvm 1    | 2020/10/17 00:02:24 | ERROR | Temporary Store limit is 51200
 INFO   | jvm 1    | 2020/10/17 00:02:25 |  INFO | ActiveMQ WebConsole available at http://0.0.0.0:8161/
 INFO   | jvm 1    | 2020/10/17 00:02:25 |  INFO | Initializing Spring FrameworkServlet 'dispatcher'
 INFO   | jvm 1    | 2020/10/17 00:02:25 |  INFO | jolokia-agent: No access restrictor found at classpath:/jolokia-access.xml, access to all MBeans is allowed
+STATUS | wrapper  | 2020/10/19 16:06:01 | --> Wrapper Started as Console
+STATUS | wrapper  | 2020/10/19 16:06:01 | Launching a JVM...
+INFO   | jvm 1    | 2020/10/19 16:06:03 | Wrapper (Version 3.2.3) http://wrapper.tanukisoftware.org
+INFO   | jvm 1    | 2020/10/19 16:06:03 |   Copyright 1999-2006 Tanuki Software, Inc.  All Rights Reserved.
+INFO   | jvm 1    | 2020/10/19 16:06:03 | 
+INFO   | jvm 1    | 2020/10/19 16:06:03 | Java Runtime: Oracle Corporation 1.8.0_211 C:\Program Files\Java\jre1.8.0_211
+INFO   | jvm 1    | 2020/10/19 16:06:03 |   Heap sizes: current=125952k  free=115956k  max=932352k
+INFO   | jvm 1    | 2020/10/19 16:06:03 |     JVM args: -Dactivemq.home=../.. -Dactivemq.base=../.. -Djavax.net.ssl.keyStorePassword=password -Djavax.net.ssl.trustStorePassword=password -Djavax.net.ssl.keyStore=../../conf/broker.ks -Djavax.net.ssl.trustStore=../../conf/broker.ts -Dcom.sun.management.jmxremote -Dorg.apache.activemq.UseDedicatedTaskRunner=true -Djava.util.logging.config.file=logging.properties -Dactivemq.conf=../../conf -Dactivemq.data=../../data -Djava.security.auth.login.config=../../conf/login.config -Xmx1024m -Djava.library.path=../../bin/win64 -Dwrapper.key=qicYC7PMhob9KgWk -Dwrapper.port=32000 -Dwrapper.jvm.port.min=31000 -Dwrapper.jvm.port.max=31999 -Dwrapper.pid=5672 -Dwrapper.version=3.2.3 -Dwrapper.native_library=wrapper -Dwrapper.cpu.timeout=10 -Dwrapper.jvmid=1
+INFO   | jvm 1    | 2020/10/19 16:06:03 | Extensions classpath:
+INFO   | jvm 1    | 2020/10/19 16:06:03 |   [..\..\lib,..\..\lib\camel,..\..\lib\optional,..\..\lib\web,..\..\lib\extra]
+INFO   | jvm 1    | 2020/10/19 16:06:03 | ACTIVEMQ_HOME: ..\..
+INFO   | jvm 1    | 2020/10/19 16:06:03 | ACTIVEMQ_BASE: ..\..
+INFO   | jvm 1    | 2020/10/19 16:06:03 | ACTIVEMQ_CONF: ..\..\conf
+INFO   | jvm 1    | 2020/10/19 16:06:03 | ACTIVEMQ_DATA: ..\..\data
+INFO   | jvm 1    | 2020/10/19 16:06:03 | Loading message broker from: xbean:activemq.xml
+INFO   | jvm 1    | 2020/10/19 16:06:03 |  INFO | Refreshing org.apache.activemq.xbean.XBeanBrokerFactory$1@3c08aa6d: startup date [Mon Oct 19 16:06:03 CST 2020]; root of context hierarchy
+INFO   | jvm 1    | 2020/10/19 16:06:04 |  INFO | PListStore:[C:\Users\li_wenjun_ext\Desktop\test\project\project\apache-activemq-5.10.0\bin\win64\..\..\data\localhost\tmp_storage] started
+INFO   | jvm 1    | 2020/10/19 16:06:04 |  INFO | Using Persistence Adapter: KahaDBPersistenceAdapter[C:\Users\li_wenjun_ext\Desktop\test\project\project\apache-activemq-5.10.0\bin\win64\..\..\data\kahadb]
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | KahaDB is version 5
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | Recovering from the journal ...
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | Recovery replayed 6954 operations from the journal in 0.266 seconds.
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | Apache ActiveMQ 5.10.0 (localhost, ID:0123DO2091356X-59149-1603094765264-0:1) is starting
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | Listening for connections at: tcp://0123DO2091356X:1234?maximumConnections=1000&wireFormat.maxFrameSize=104857600
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | Connector openwire started
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | Apache ActiveMQ 5.10.0 (localhost, ID:0123DO2091356X-59149-1603094765264-0:1) started
+INFO   | jvm 1    | 2020/10/19 16:06:05 |  INFO | For help or more information please see: http://activemq.apache.org
+INFO   | jvm 1    | 2020/10/19 16:06:06 |  INFO | ActiveMQ WebConsole available at http://0.0.0.0:8161/
+INFO   | jvm 1    | 2020/10/19 16:06:06 |  INFO | Initializing Spring FrameworkServlet 'dispatcher'
+INFO   | jvm 1    | 2020/10/19 16:06:06 |  INFO | jolokia-agent: No access restrictor found at classpath:/jolokia-access.xml, access to all MBeans is allowed
