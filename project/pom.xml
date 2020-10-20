@@ -16,10 +16,7 @@
         <module>security-resources</module>
         <module>gateway</module>
         <module>service</module>
-        <module>elast-resources</module>
         <module>sharding-jdbc</module>
-        <module>order-mq</module>
-        <module>delivery-mq</module>
     </modules>
 
     <parent>
@@ -41,6 +38,14 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -61,6 +66,11 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.41</version>
         </dependency>
     </dependencies>
 

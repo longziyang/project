@@ -7,6 +7,10 @@ spring:
       discovery:
         enable: true
         service-id: config-server
+  activemq:
+    broker-url: tcp://localhost:1234
+  jms:
+    pub-sub-domain: true
 eureka:
   client:
     service-url:

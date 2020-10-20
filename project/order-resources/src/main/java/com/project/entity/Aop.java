@@ -1,11 +1,14 @@
 package com.project.entity;
 
-
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name="aop") 
 public class Aop {
 
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private String type;
 	private String method;
@@ -57,5 +60,7 @@ public class Aop {
 	public void setArgs(String args) {
 		this.args = args;
 	}
+
+	
 
 }
