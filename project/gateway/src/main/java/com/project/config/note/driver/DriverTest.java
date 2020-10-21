@@ -1,6 +1,6 @@
 package com.project.config.note.driver;
 
-import com.lzy.note.Student;
+import com.project.config.note.Student;
 
 import java.io.IOException;
 import java.io.InputStream;
