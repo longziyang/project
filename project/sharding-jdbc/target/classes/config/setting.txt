@@ -1,0 +1,76 @@
+
+复制原有mysql如：D:\mysql-5.7.25(作为主库) -> D:\mysql-5.7.25-s1(作为从库)，并修改以下从库的my.ini：
+[mysqld]
+#设置3307端口
+port = 3307
+# 设置mysql的安装目录
+basedir=D:\mysql‐5.7.25‐s1
+# 设置mysql数据库的数据的存放目录
+datadir=D:\mysql‐5.7.25‐s1\data
+
+然后将从库安装为windows服务，注意配置文件位置：
+D:\mysql‐5.7.25‐s1\bin>mysqld install mysqls1 ‐‐defaults‐file="D:\mysql‐5.7.25‐s1\my.ini"
+
+
+主库：
+从库：
+重启主库和从库：
+[mysqld]
+#设置3307端口
+port = 3307
+# 设置mysql的安装目录
+basedir=D:\mysql‐5.7.25‐s1
+# 设置mysql数据库的数据的存放目录
+datadir=D:\mysql‐5.7.25‐s1\data
+D:\mysql‐5.7.25‐s1\bin>mysqld install mysqls1 ‐‐defaults‐file="D:\mysql‐5.7.25‐s1\my.ini"
+[mysqld]
+#开启日志
+log‐bin = mysql‐bin
+#设置服务id，主从不能一致
+server‐id = 1
+#设置需要同步的数据库
+binlog‐do‐db=user_db
+#屏蔽系统库同步
+binlog‐ignore‐db=mysql
+binlog‐ignore‐db=information_schema
+binlog‐ignore‐db=performance_schema
+[mysqld]
+#开启日志
+log‐bin = mysql‐bin
+#设置服务id，主从不能一致
+server‐id = 2
+#设置需要同步的数据库
+replicate_wild_do_table=user_db.%
+#屏蔽系统库同步
+replicate_wild_ignore_table=mysql.%
+replicate_wild_ignore_table=information_schema.%
+replicate_wild_ignore_table=performance_schema.%
+
+#切换至主库bin目录，登录主库
+mysql ‐h localhost ‐uroot ‐p
+#授权主备复制专用账号
+GRANT REPLICATION SLAVE ON *.* TO 'db_sync'@'%' IDENTIFIED BY 'db_sync';
+#刷新权限
+FLUSH PRIVILEGES;
+#确认位点 记录下文件名以及位点
+show master status;
+
+#切换至从库bin目录，登录从库
+mysql ‐h localhost ‐P3307 ‐uroot ‐p
+#先停止同步
+STOP SLAVE;
+#修改从库指向到主库，使用上一步记录的文件名以及位点
+CHANGE MASTER TO
+master_host = 'localhost',
+master_user = 'db_sync',
+master_password = 'db_sync',
+master_log_file = 'mysql‐bin.000002',
+master_log_pos = 154;
+#启动同步
+START SLAVE;
+#查看从库状态Slave_IO_Runing和Slave_SQL_Runing都为Yes说明同步成功，如果不为Yes，请检查error_log，然后
+排查相关异常。
+show slave status\G
+#注意 如果之前此备库已有主库指向 需要先执行以下命令清空
+STOP SLAVE IO_THREAD FOR CHANNEL '';
+reset slave all;

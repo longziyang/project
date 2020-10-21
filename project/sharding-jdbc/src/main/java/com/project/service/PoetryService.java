@@ -6,12 +6,14 @@ import com.project.model.PoetryEs;
 import com.project.repository.PoetryRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class PoetryService {
     @Autowired
     private PoetryMapper poetryMapper;

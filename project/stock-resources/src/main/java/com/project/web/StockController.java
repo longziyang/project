@@ -19,7 +19,10 @@ public class StockController {
     @GetMapping("/stock/{id}")
     public Stock queryOrderById(@PathVariable Long id) {
 
-        return stockService.queryById(id);
+    	Stock stock = new Stock();
+    	stock.setId(id);
+        return stock;
+        //return stockService.queryById(id);
     }
 
 }

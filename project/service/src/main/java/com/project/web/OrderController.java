@@ -3,6 +3,8 @@ package com.project.web;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.project.feign.OrderFeign;
+import com.project.feign.StockFeign;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -22,9 +24,17 @@ public class OrderController {
     @Autowired
     private OrderFeign orderFeign;
     @Autowired
+    private StockFeign stockFeign;
+    @Autowired
     private DiscoveryClient discoveryClient;
 
 
+    @GetMapping("/stock/{id}")
+    public String queryStockInfo(@PathVariable Long id) {
+
+        return stockFeign.queryStockInfo(id);
+    }
+    
     @GetMapping("/order/{id}")
     //@HystrixCommand(fallbackMethod = "fallbackMethod")
     @HystrixCommand

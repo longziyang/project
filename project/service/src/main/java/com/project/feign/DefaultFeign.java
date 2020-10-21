@@ -1,4 +1,4 @@
 package com.project.feign;
 
-public interface DefaultFeign extends OrderFeign{
+public interface DefaultFeign extends OrderFeign,StockFeign{
 }

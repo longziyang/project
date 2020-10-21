@@ -9,4 +9,10 @@ public class DefaultFeignImp implements DefaultFeign {
 
         return "网络错误";
     }
+
+	@Override
+	public String queryStockInfo(Long id) {
+		// TODO Auto-generated method stub
+		return "服务已断开";
+	}
 }
