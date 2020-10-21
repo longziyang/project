@@ -41,8 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyAccessDecisionManager myAccessDecisionManager;// 权限决策器
-    @Autowired
-    private MyInvocationSecurityMetadataSource myFilterSecurityInterceptor;// 权限过滤器（当前url所需要的访问权限）
+//    @Autowired
+//    private MyInvocationSecurityMetadataSource myFilterSecurityInterceptor;// 权限过滤器（当前url所需要的访问权限）
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
