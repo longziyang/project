@@ -14,50 +14,50 @@ import javax.annotation.PostConstruct;
 @ConfigurationProperties(prefix = "spring.jwt.key")
 public class KeyConfig {
 
-	private String pub;
-	private String pri;
+    private String pub;
+    private String pri;
 
-	private PublicKey publicKey;
-	private PrivateKey privateKey;
+    private PublicKey publicKey;
+    private PrivateKey privateKey;
 
-	// 构造方法后执行
-	@PostConstruct
-	public void loadKey() throws Exception {
+    // 构造方法后执行
+    @PostConstruct
+    public void loadKey() throws Exception {
 
-		System.out.println("pub = " + pub + " pri=" + pri);
-		publicKey = RsaUtils.getPublicKey(pub);
-		privateKey = RsaUtils.getPrivateKey(pri);
-	}
+        System.out.println("pub = " + pub + " pri=" + pri);
+        publicKey = RsaUtils.getPublicKey(pub);
+        privateKey = RsaUtils.getPrivateKey(pri);
+    }
 
-	public String getPub() {
-		return pub;
-	}
+    public String getPub() {
+        return pub;
+    }
 
-	public void setPub(String pub) {
-		this.pub = pub;
-	}
+    public void setPub(String pub) {
+        this.pub = pub;
+    }
 
-	public String getPri() {
-		return pri;
-	}
+    public String getPri() {
+        return pri;
+    }
 
-	public void setPri(String pri) {
-		this.pri = pri;
-	}
+    public void setPri(String pri) {
+        this.pri = pri;
+    }
 
-	public PublicKey getPublicKey() {
-		return publicKey;
-	}
+    public PublicKey getPublicKey() {
+        return publicKey;
+    }
 
-	public void setPublicKey(PublicKey publicKey) {
-		this.publicKey = publicKey;
-	}
+    public void setPublicKey(PublicKey publicKey) {
+        this.publicKey = publicKey;
+    }
 
-	public PrivateKey getPrivateKey() {
-		return privateKey;
-	}
+    public PrivateKey getPrivateKey() {
+        return privateKey;
+    }
 
-	public void setPrivateKey(PrivateKey privateKey) {
-		this.privateKey = privateKey;
-	}
+    public void setPrivateKey(PrivateKey privateKey) {
+        this.privateKey = privateKey;
+    }
 }

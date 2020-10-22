@@ -15,4 +15,12 @@ public class StudentProxy implements Person{
         student.eat();
         System.out.println("学生洗碗");
     }
+
+    @Override
+    public void run() {
+        
+        System.out.println("学生集合");
+        student.run();
+        System.out.println("学生解散");
+    }
 }
